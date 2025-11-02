@@ -1,1 +1,1 @@
-# Customer_Lifetime_Value_Prediction_-_Optimization
+# Customer_Lifetime_Value_Prediction_&_Optimization
