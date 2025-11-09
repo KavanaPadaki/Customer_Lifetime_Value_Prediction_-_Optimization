@@ -1,0 +1,15 @@
+# data and model artifacts
+data/
+data/*
+!.gitkeep
+
+models/
+
+# Jupyter outputs, Python build
+.ipynb_checkpoints/
+*.ipynb
+__pycache__/
+*.pyc
+*.pkl
+*.h5
+*.ckpt
