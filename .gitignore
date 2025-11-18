@@ -9,21 +9,6 @@ __pycache__/
 *.log
 
 ###############################################
-# DATA & MODEL ARTIFACTS (DO NOT PUSH)
-###############################################
-data/
-*.parquet
-*.csv
-*.joblib
-*.pkl
-*.h5
-*.npy
-*.npz
-
-# In case you accidentally added them before:
-!data/.gitkeep
-
-###############################################
 # STREAMLIT
 ###############################################
 .streamlit/
@@ -52,3 +37,4 @@ Thumbs.db
 
 # Jupyter
 .ipynb_checkpoints/
+
