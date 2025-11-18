@@ -3,9 +3,10 @@ import joblib
 import pandas as pd
 import numpy as np
 
-BASE = "/app/data" if os.path.exists("/.dockerenv") else "/data"
+BASE = "data"
 DATA_PATH = f"{BASE}/clv_prepared.parquet"
 MODEL_PATH = f"{BASE}/model.joblib"
+
 
 
 class ModelServer:
@@ -144,4 +145,5 @@ class ModelServer:
             "rows": len(self.data),
             "features": self.feature_cols,
         }
+
 
