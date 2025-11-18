@@ -1,40 +1,62 @@
-###############################################
+########################################
 # PYTHON
-###############################################
-__pycache__/
+########################################
+_pycache_/
 *.pyc
 *.pyo
 *.pyd
-*.pkl
+
+########################################
+# ENV / VENV
+########################################
+.env
+venv/
+.venv/
+
+########################################
+# RAW DATA (DO NOT PUSH)
+########################################
+data/raw/
+*.csv
+*.xlsx
+
+########################################
+# PROCESSED DATA (WE KEEP ONLY REQUIRED FILES)
+########################################
+# DO NOT ignore parquet or joblib — backend needs these.
+# Make sure ONLY the final files you actually load are included.
+# Everything else stays ignored.
+# Example raw-prep paths:
+data/intermediate/
+data/temp/
+
+########################################
+# LARGE UNNEEDED ARTIFACTS
+########################################
+*.npz
+*.npy
+*.pickle
+*.h5
+
+########################################
+# STREAMLIT CONFIG (LOCAL ONLY)
+########################################
+.streamlit/credentials.toml
+.streamlit/secrets.toml
+
+########################################
+# LOGS
+########################################
+logs/
 *.log
 
-###############################################
-# STREAMLIT
-###############################################
-.streamlit/
-credentials.toml
-secrets.toml
-
-###############################################
-# DOCKER
-###############################################
-*.pid
-*.sock
-docker-compose.override.yml
-
-###############################################
-# OS / EDITOR FILES
-###############################################
-# Mac / Windows
+########################################
+# OS SHIT
+########################################
 .DS_Store
 Thumbs.db
 
-# VSCode
-.vscode/
-
-# PyCharm / JetBrains
-.idea/
-
-# Jupyter
+########################################
+# JUPYTER
+########################################
 .ipynb_checkpoints/
-
