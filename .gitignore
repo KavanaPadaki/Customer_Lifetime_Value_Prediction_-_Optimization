@@ -1,15 +1,54 @@
-# data and model artifacts
-data/
-data/*
-!.gitkeep
-
-models/
-
-# Jupyter outputs, Python build
-.ipynb_checkpoints/
-*.ipynb
+###############################################
+# PYTHON
+###############################################
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+*.pkl
+*.log
+
+###############################################
+# DATA & MODEL ARTIFACTS (DO NOT PUSH)
+###############################################
+data/
+*.parquet
+*.csv
+*.joblib
 *.pkl
 *.h5
-*.ckpt
+*.npy
+*.npz
+
+# In case you accidentally added them before:
+!data/.gitkeep
+
+###############################################
+# STREAMLIT
+###############################################
+.streamlit/
+credentials.toml
+secrets.toml
+
+###############################################
+# DOCKER
+###############################################
+*.pid
+*.sock
+docker-compose.override.yml
+
+###############################################
+# OS / EDITOR FILES
+###############################################
+# Mac / Windows
+.DS_Store
+Thumbs.db
+
+# VSCode
+.vscode/
+
+# PyCharm / JetBrains
+.idea/
+
+# Jupyter
+.ipynb_checkpoints/
