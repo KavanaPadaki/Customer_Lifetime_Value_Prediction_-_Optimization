@@ -6,8 +6,8 @@ Backend served via FastAPI, frontend built with Streamlit, deployed using Docker
 
 ## Live Demo
 
-Frontend (Streamlit): [https://YOUR-STREAMLIT-APP.streamlit.app](https://clv-app-final-production.up.railway.app/)
-Backend (FastAPI): [https://YOUR-RAILWAY-APP.up.railway.app/health](https://customerlifetimevalueprediction-optimizatio-production.up.railway.app/health)
+Frontend (Streamlit):[link](https://clv-app-final-production.up.railway.app/)
+Backend (FastAPI):[link](https://customerlifetimevalueprediction-optimizatio-production.up.railway.app/health)
 
 ---
 
