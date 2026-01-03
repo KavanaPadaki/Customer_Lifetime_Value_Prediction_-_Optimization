@@ -1,19 +1,29 @@
+version: "3.8"
 
 services:
+  precompute:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.precompute
+    container_name: clv_precompute
+    volumes:
+      - ./backend/data:/app/data
+    restart: "no"
+
   backend:
     build: ./backend
     container_name: clv_backend
-    volumes:
-      - ./data:/app/data     # <-- FIXED
     ports:
       - "8000:8000"
+    volumes:
+      - ./backend/data:/app/data
+    depends_on:
+      - precompute
     restart: unless-stopped
 
   frontend:
     build: ./frontend
     container_name: clv_frontend
-    volumes:
-      - ./data:/app/data
     ports:
       - "8501:8501"
     environment:
@@ -21,6 +31,3 @@ services:
     depends_on:
       - backend
     restart: unless-stopped
-
-
- 

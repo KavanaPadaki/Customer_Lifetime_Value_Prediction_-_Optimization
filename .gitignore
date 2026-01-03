@@ -1,62 +1,72 @@
-########################################
-# PYTHON
-########################################
-_pycache_/
-*.pyc
-*.pyo
-*.pyd
-
-########################################
-# ENV / VENV
-########################################
-.env
+# =========================
+# Python virtual environments
+# =========================
 venv/
+.env/
+.env.*
 .venv/
 
-########################################
-# RAW DATA (DO NOT PUSH)
-########################################
-data/raw/
-*.csv
-*.xlsx
+# =========================
+# Python cache / compiled
+# =========================
+__pycache__/
+*.py[cod]
+*$py.class
 
-########################################
-# PROCESSED DATA (WE KEEP ONLY REQUIRED FILES)
-########################################
-# DO NOT ignore parquet or joblib — backend needs these.
-# Make sure ONLY the final files you actually load are included.
-# Everything else stays ignored.
-# Example raw-prep paths:
-data/intermediate/
-data/temp/
+# =========================
+# Jupyter
+# =========================
+.ipynb_checkpoints/
 
-########################################
-# LARGE UNNEEDED ARTIFACTS
-########################################
-*.npz
-*.npy
-*.pickle
-*.h5
-
-########################################
-# STREAMLIT CONFIG (LOCAL ONLY)
-########################################
-.streamlit/credentials.toml
-.streamlit/secrets.toml
-
-########################################
-# LOGS
-########################################
-logs/
-*.log
-
-########################################
-# OS SHIT
-########################################
+# =========================
+# OS / Editor junk
+# =========================
 .DS_Store
 Thumbs.db
+.idea/
+.vscode/
+*.swp
 
-########################################
-# JUPYTER
-########################################
-.ipynb_checkpoints/
+# =========================
+# Logs
+# =========================
+*.log
+
+# =========================
+# ML artifacts (optional — decide what to keep)
+# =========================
+*.joblib
+*.pkl
+*.h5
+
+# =========================
+# Data files (DO NOT PUSH RAW DATA)
+# =========================
+data/raw/
+data/interim/
+data/processed/
+*.csv
+*.parquet
+
+# =========================
+# Docker
+# =========================
+*.pid
+docker-compose.override.yml
+
+# =========================
+# Streamlit
+# =========================
+.streamlit/secrets.toml
+
+# =========================
+# Test / coverage
+# =========================
+.coverage
+htmlcov/
+
+# =========================
+# Temporary files
+# =========================
+tmp/
+.cache/
