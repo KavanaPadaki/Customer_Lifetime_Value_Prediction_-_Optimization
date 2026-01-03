@@ -23,6 +23,28 @@ class MetaResponse(BaseModel):
 
 
 # ----------------------------------------------------------
+# MODEL METRICS (REGRESSION)
+# ----------------------------------------------------------
+class RegressionMetricsResponse(BaseModel):
+    r2: float
+    mae: float
+    rmse: float
+    n_train: int
+    n_test: int
+
+
+class ClassificationMetricsResponse(BaseModel):
+    accuracy: float
+    precision: float
+    recall: float
+    f1: float
+    roc_auc: float
+    threshold: float
+
+
+
+
+# ----------------------------------------------------------
 # DECILE LIFT
 # ----------------------------------------------------------
 class DecileStat(BaseModel):
@@ -41,29 +63,23 @@ class DecileLiftResponse(BaseModel):
 # ----------------------------------------------------------
 class GainCurveResponse(BaseModel):
     frac: List[float]
-    cum_gain: List[float]
+    cum_actual: List[float]
 
 
 # ----------------------------------------------------------
 # ELITE CUSTOMERS
 # ----------------------------------------------------------
-class EliteRow(BaseModel):
-    Customer_ID: str | int
-    pred: float
-    future_clv: float
-
-
 class EliteResponse(BaseModel):
     top_pct: int
     count: int
-    elite_rows: List[dict]   # using dict because row fields vary
+    elite_rows: List[dict]
 
 
 # ----------------------------------------------------------
 # TABLE
 # ----------------------------------------------------------
 class TableResponse(BaseModel):
-    rows: List[dict]   # flexible structure, DF rows 
+    rows: List[dict]
 
 
 # ----------------------------------------------------------
