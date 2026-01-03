@@ -1,148 +1,91 @@
+# 📈 Customer Lifetime Value (CLV) Prediction System
 
-# Customer Lifetime Value (CLV) Prediction System
+An end-to-end **Customer Lifetime Value prediction platform** built using Machine Learning, FastAPI, Docker, and Streamlit, deployed on cloud infrastructure.
 
-End-to-end machine learning system for predicting 6-month Customer Lifetime Value (CLV).
-Backend served via FastAPI, frontend built with Streamlit, deployed using Docker and Railway.
-
-## Live Demo
-
-
+This project demonstrates **data preprocessing, feature engineering, model training, evaluation, API serving, and frontend visualization** in a production-style setup.
 
 ---
 
-## Features
+## 🚀 Live Demo
 
-### Analytics
+- **Frontend :**  
+  [Streamlit Dashboard](https://customerlifetimevalueprediction-optimization-dn5rgub64tqsqzf25.streamlit.app/)
 
-* Gain curve
-* Decile lift
-* Customer segmentation (Elite / Top-X%)
-* Customer data table
-* Single-customer real-time prediction
-
-### Backend (FastAPI)
-
-Endpoints:
-
-* `POST /predict`
-* `GET /decile_lift`
-* `GET /gain_curve`
-* `GET /elite`
-* `GET /table`
-* `GET /meta`
-* `GET /health`
-
-### Frontend (Streamlit)
-
-* Real-time charts and segmentation analytics
-* Customer browsing interface
-* Online CLV prediction interface
+- **Backend :**  
+  [FastAPI](https://customer-lifetime-value-prediction.onrender.com)
 
 ---
 
-## Project Structure
+## 🧠 Problem Statement
 
-```
-clv-app/
-├── backend/
-│   ├── app/
-│   │   ├── main.py
-│   │   ├── model_server.py
-│   │   ├── metrics.py
-│   │   ├── schemas.py
-│   │   └── utils.py
-│   ├── Dockerfile
-│   └── requirements.txt
-│
-├── frontend/
-│   ├── app.py
-│   └── requirements.txt
-│
-├── data/
-│   └── final/
-│       ├── clv_prepared.parquet
-│       └── model.joblib
-│
-├── docker-compose.yml
-└── README.md
-```
+Customer Lifetime Value (CLV) is a critical metric for:
+- Customer segmentation
+- Marketing spend optimization
+- Retention strategies
+
+The goal of this project is to:
+- Predict **future customer value**
+- Rank customers by expected value
+- Evaluate model performance using **regression and classification metrics**
+- Expose predictions and analytics via a REST API
+- Visualize results in an interactive dashboard
 
 ---
 
-## Local Setup
 
-### Run with Docker
+## 📊 Models Implemented
 
-```bash
-docker-compose up --build
-```
+### 1️⃣ Regression Model (CLV Prediction)
+- **Model:** RandomForestRegressor
+- **Target:** Future 6-month customer revenue
 
-## Deployment
+**Metrics:**
+- R² Score
+- MAE
+- RMSE
 
-### Deploy to Railway (Backend)
+### 2️⃣ Classification Model (Customer Value Segment)
+- Binary classification (High vs Low CLV)
+- Used for interpretability and business insights
 
-1. Push repository to GitHub
-2. Create Railway service → Deploy from GitHub (root: `backend`)
-3. Upload ML artifacts to:
-
-```
-/app/data/final/
-```
-
-4. Add environment variables:
-
-```
-DATA_DIR=/app/data
-PYTHONUNBUFFERED=1
-```
-
-5. Deploy
-
-### Deploy to Streamlit Cloud (Frontend)
-
-Add secret:
-
-```
-CLV_API_URL="https://YOUR-RAILWAY-URL"
-```
+**Metrics:**
+- Accuracy
+- Precision
+- Recall
+- F1-Score
+- ROC-AUC
 
 ---
 
-## Example Requests
+## 📈 Evaluation & Business Metrics
 
-### Predict Endpoint
+The system also computes:
+- **Decile Lift Analysis**
+- **Gain Curve**
+- **Elite Customer Identification (Top X%)**
 
-```json
-{
-  "customer_id": "12345"
-}
-```
-
-### Table
-
-```
-GET /table?limit=100
-```
-
-### Elite segment
-
-```
-GET /elite?top_pct=5
-```
+These metrics help evaluate how well the model prioritizes high-value customers.
 
 ---
 
-## Future Enhancements
+## 🧪 Tech Stack
 
-* Database persistence
-* Automated model retraining pipeline
-* XGBoost version
-* CI/CD automation
-* SHAP explainability
+### Backend
+- Python 3.11
+- FastAPI
+- Scikit-learn
+- Pandas / NumPy
+- Joblib
+- Docker
+
+### Frontend
+- Streamlit
+- Requests
+- Pandas
+
+### Deployment
+- **Backend:** Render (Dockerized FastAPI)
+- **Frontend:** Streamlit Community Cloud
 
 ---
-
-## Purpose
-
-Demonstrates practical ML engineering through model development, API deployment, and production-grade architecture.
 
