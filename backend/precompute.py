@@ -5,15 +5,18 @@ from dateutil.relativedelta import relativedelta
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 import joblib
+from sklearn.metrics import r2_score, mean_absolute_error, mean_squared_error
+import json
+
 
 # Detect environment (container or host)
 
 
-BASE = "data" 
-
-RAW_PATH = f"{BASE}/processed/cleaned_dataset.csv"
-OUT_PARQUET = f"{BASE}/final/clv_prepared.parquet"
-OUT_MODEL = f"{BASE}/final/model.joblib"
+BASE = "data"
+RAW_PATH = f"{BASE}/cleaned_dataset.csv"
+OUT_PARQUET = f"{BASE}/clv_prepared.parquet"
+OUT_MODEL = f"{BASE}/model.joblib"
+METRICS_PATH = f"{BASE}/metrics.json"
 
 
 # ----------------------------
@@ -160,11 +163,16 @@ def compute_future_clv(transactions, past_cutoff, horizon_months=6):
 def train_model(df):
     df = df.replace([np.inf, -np.inf], np.nan).fillna(0)
 
-    features = [c for c in df.columns if c not in {"Customer ID", "future_clv", "future_clv_log","cohort_month"}]
+    features = [
+        c for c in df.columns
+        if c not in {"Customer ID", "future_clv", "future_clv_log", "cohort_month"}
+    ]
+
     X = df[features]
     y = df["future_clv"].values
 
-    X_train, _, y_train, _ = train_test_split(
+    # Proper evaluation split
+    X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.2, random_state=42
     )
 
@@ -176,8 +184,30 @@ def train_model(df):
     )
 
     model.fit(X_train, y_train)
+
+    # ---------- EVALUATION ----------
+    y_pred = model.predict(X_test)
+
+    metrics = {
+        "r2": float(r2_score(y_test, y_pred)),
+        "mae": float(mean_absolute_error(y_test, y_pred)),
+        "rmse": float(np.sqrt(mean_squared_error(y_test, y_pred))),
+        "n_train": int(len(X_train)),
+        "n_test": int(len(X_test))
+    }
+
+    # ---------- SAVE ----------
+    os.makedirs(os.path.dirname(OUT_MODEL), exist_ok=True)
     joblib.dump(model, OUT_MODEL)
-    print(f"Model saved → {OUT_MODEL}")
+
+    metrics_path = OUT_MODEL.replace("model.joblib", "metrics.json")
+    with open(metrics_path, "w") as f:
+        json.dump(metrics, f, indent=2)
+
+    print("Model saved →", OUT_MODEL)
+    print("Metrics saved →", metrics_path)
+    print(metrics)
+
 
 
 
