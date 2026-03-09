@@ -81,9 +81,9 @@ class ModelServer:
         # CUSTOMER INDEX (FAST LOOKUP)
         # =====================================================
         self.customer_index = {
-            str(cid): idx
+            str(int(float(cid))): idx
             for idx, cid in enumerate(
-                self.data["Customer ID"].astype(str)
+                self.data["Customer ID"]
             )
         }
 
@@ -187,3 +187,4 @@ class ModelServer:
             "rows": len(self.data),
             "features": self.feature_cols,
         }
+
