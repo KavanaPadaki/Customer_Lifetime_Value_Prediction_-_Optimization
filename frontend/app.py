@@ -11,7 +11,7 @@ if not BACKEND_URL:
     st.stop()
     raise RuntimeError("BACKEND_URL environment variable not set")
 
-TIMEOUT = 10
+TIMEOUT = 30
 
 # ============================================================
 # API HELPERS
@@ -51,13 +51,10 @@ def load_customer_ids():
     rows = data.get("rows", [])
     if not rows:
         return []
-
     df = pd.DataFrame(rows)
     if "Customer ID" not in df.columns:
         return []
-
-    return sorted(df["Customer ID"].astype(str).unique())
-
+    return sorted(df["Customer ID"].apply(lambda x: str(int(float(x)))).unique())
 # ============================================================
 # PAGE CONFIG
 # ============================================================
@@ -206,3 +203,4 @@ if table.get("rows"):
     st.dataframe(pd.DataFrame(table["rows"]))
 else:
     st.warning("No table data available.")
+
